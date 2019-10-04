@@ -5,7 +5,7 @@
         //auto-implemented property
         //automatically creates private backing field
         public string Brand { get; }
-        private string model;
+        public string Model { get; }
         private string registrationNumber;
         private ushort velocity;
         private bool driveModeOn;
@@ -14,21 +14,13 @@
         public Car(string brand, string model)
         {
             Brand = brand;
-            this.model = model;
+            Model = model;
         }
         public Car(string brand, string model, string registrationNumber)
         {
             Brand = brand;
-            this.model = model;
+            Model = model;
             RegistrationNumber = registrationNumber;
-        }
-
-        public string Model
-        {
-            get
-            {
-                return model;
-            }
         }
 
         public string RegistrationNumber
@@ -39,10 +31,15 @@
             }
             set
             {
-                registrationNumber = value.Length > 7           //boolean expression
-                                     ? value.Substring(0, 7)    //if true
+                registrationNumber = value.Length > 6           //boolean expression
+                                     ? value.Substring(0, 6)    //if true
                                      : value;                   //if false
             }
+        }
+
+        public void SetRegistrationNumber(string value)
+        {
+            RegistrationNumber = value;
         }
 
         public ushort Velocity { get; }

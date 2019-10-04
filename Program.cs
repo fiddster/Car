@@ -1,12 +1,14 @@
 ﻿using System;
+using System.Threading;
 
 namespace Car
 {
     class Program
     {
+        static Car[] carList = new Car[10];
+
         static void Main(string [] args)
         {
-            Car[] carList = new Car[10];
             int carListCounter = 0;
 
             bool programShouldRun = true;
@@ -27,17 +29,17 @@ namespace Car
                     {
                             Console.WriteLine("Add car");
                             Console.WriteLine();
-                            Console.WriteLine("Brand: ");
-                            Console.WriteLine("Model: ");
-                            Console.WriteLine("Registration number: ");
+                            Console.WriteLine("Brand:".PadLeft("Registration number:".Length, ' '));
+                            Console.WriteLine("Model:".PadLeft("Registration number:".Length, ' '));
+                            Console.WriteLine("Registration number:");
 
-                            Console.SetCursorPosition("Brand: ".Length + 2, 2);
+                            Console.SetCursorPosition("Registration number:".Length + 2, 2);
                             string brand = Console.ReadLine();
 
-                            Console.SetCursorPosition("Model: ".Length + 2, 3);
+                            Console.SetCursorPosition("Registration number:".Length + 2, 3);
                             string model = Console.ReadLine();
 
-                            Console.SetCursorPosition("Registration number: ".Length + 2, 4);
+                            Console.SetCursorPosition("Registration number:".Length + 2, 4);
                             string registrationNumber = Console.ReadLine();
 
                             carList[carListCounter++] = new Car(brand, model, registrationNumber);
@@ -67,11 +69,39 @@ namespace Car
 
                     case ConsoleKey.D3:
                     {
+                            Console.WriteLine("Current registration number:");
+                            Console.WriteLine("New registration number:");
+
+                            Console.SetCursorPosition("Current registration number:".Length + 2, 0);
+                            string currentRegistrationNumber = Console.ReadLine();
+
+                            
+                            Console.SetCursorPosition("New registration number:".Length + 2, 1);
+                            string newRegistrationNumber = Console.ReadLine();
+
+                            Car carToEdit = SearchCarByRegistrationNumber(currentRegistrationNumber);
+
+                            if(carToEdit != null)
+                            {
+                                carToEdit.SetRegistrationNumber(newRegistrationNumber);
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                Console.WriteLine($"Car with registration number: {currentRegistrationNumber} could not be found");
+                                Thread.Sleep(1500);
+                            }
 
                     }
                     break;
 
                     case ConsoleKey.D4:
+                    {
+
+                    }
+                    break;
+
+                    case ConsoleKey.D5:
                     {
                         programShouldRun = false;
                     }
@@ -88,11 +118,25 @@ namespace Car
         {
             Console.WriteLine("1. Add car");
             Console.WriteLine("2. List car");
-            Console.WriteLine("3. Simulate speed");
-            Console.WriteLine("4 Exit program");
+            Console.WriteLine("3. Change registration number");
+            Console.WriteLine("4. Simulate speed");
+            Console.WriteLine("5. Exit program");
 
         }
         
-        
+        public static Car SearchCarByRegistrationNumber(string value)
+        {
+            Car carToReturn = null;
+            foreach (Car car in carList)
+            {
+                if (car == null) continue;
+                else if (car.RegistrationNumber.Equals(value))
+                {
+                    carToReturn = car;
+                    return carToReturn;
+                }
+            }
+            return carToReturn;
+        }
     }
 }
