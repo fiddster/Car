@@ -43,6 +43,18 @@ namespace Car
 
                     case ConsoleKey.D2:
                     {
+                            Console.WriteLine("Brand".PadRight(30, ' ') + "Model".PadRight(30, ' '));
+                            Console.WriteLine("".PadRight(60, '-'));
+
+                            foreach (Car car in carList)
+                            {
+                                if (car == null) continue;
+
+                                Console.WriteLine($"{car.Brand}".PadRight(30, ' ') + $"{car.Model}".PadRight(30, ' '));
+                            }
+
+                            Console.WriteLine("<Press any key to continue>");
+                            Console.ReadKey(true);
 
                     }
                     break;

@@ -2,6 +2,9 @@
 {
     class Car
     {
+        //auto-implemented property
+        //automatically creates private backing field
+        public string Brand { get; }
         private string model;
         private string registrationNumber;
         private ushort velocity;
@@ -19,10 +22,6 @@
             this.model = model;
             this.registrationNumber = registrationNumber;
         }
-
-        //auto-implemented property
-        //automatically creates private backing field
-        public string Brand { get; }
 
         public string Model
         {
