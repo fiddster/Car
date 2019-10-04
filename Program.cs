@@ -6,17 +6,56 @@ namespace Car
     {
         static void Main(string [] args)
         {
-            Car myCar = new Car("Tesla", "Model 3", "ABC123");
+            bool programShouldRun = true;
+            
+            while (programShouldRun)
+            {
+                Console.Clear();
+                
+                PrintMainMenu();
 
-            Console.WriteLine($"{myCar.Brand}, {myCar.Model}, {myCar.RegistrationNumber}");
+                ConsoleKeyInfo keyPress = Console.ReadKey();
+                
+                Console.Clear();
+                
+                switch (keyPress.Key)
+                {
+                    case ConsoleKey.D1:
+                    { 
+                    
+                    }
+                    break;
+                    case ConsoleKey.D2:
+                    {
 
-            Console.WriteLine($"current velocity: {myCar.Velocity}");
+                    }
+                    break;
+                    case ConsoleKey.D3:
+                    {
 
-            myCar.RegistrationNumber = "HELLOWORLD";
+                    }
+                    break;
+                    case ConsoleKey.D4:
+                    {
+                        programShouldRun = false;
+                    }
+                    break;  
 
-            Console.WriteLine($"{myCar.Brand}, {myCar.Model}, {myCar.RegistrationNumber}");
+                    default:
+                        break;
+                }
+
+            }
         }
 
+        public static void PrintMainMenu()
+        {
+            Console.WriteLine("1. Add car");
+            Console.WriteLine("2. List car");
+            Console.WriteLine("3. Simulate speed");
+            Console.WriteLine("4 Exit program");
+
+        }
         
         
     }
