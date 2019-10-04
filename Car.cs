@@ -20,7 +20,7 @@
         {
             Brand = brand;
             this.model = model;
-            this.registrationNumber = registrationNumber;
+            RegistrationNumber = registrationNumber;
         }
 
         public string Model

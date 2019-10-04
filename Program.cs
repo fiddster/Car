@@ -29,7 +29,7 @@ namespace Car
                             Console.WriteLine();
                             Console.WriteLine("Brand: ");
                             Console.WriteLine("Model: ");
-                            //Console.WriteLine("Registration number: ");
+                            Console.WriteLine("Registration number: ");
 
                             Console.SetCursorPosition("Brand: ".Length + 2, 2);
                             string brand = Console.ReadLine();
@@ -37,22 +37,28 @@ namespace Car
                             Console.SetCursorPosition("Model: ".Length + 2, 3);
                             string model = Console.ReadLine();
 
-                            carList[carListCounter++] = new Car(brand, model);
+                            Console.SetCursorPosition("Registration number: ".Length + 2, 4);
+                            string registrationNumber = Console.ReadLine();
+
+                            carList[carListCounter++] = new Car(brand, model, registrationNumber);
                         }
                     break;
 
                     case ConsoleKey.D2:
                     {
-                            Console.WriteLine("Brand".PadRight(30, ' ') + "Model".PadRight(30, ' '));
-                            Console.WriteLine("".PadRight(60, '-'));
+                            Console.WriteLine("Brand".PadRight(15, ' ') + "Model".PadRight(15, ' ') + "Registration number");
+                            Console.WriteLine("".PadRight(50, '-'));
 
                             foreach (Car car in carList)
                             {
                                 if (car == null) continue;
 
-                                Console.WriteLine($"{car.Brand}".PadRight(30, ' ') + $"{car.Model}".PadRight(30, ' '));
+                                Console.WriteLine(  $"{car.Brand}".PadRight(15, ' ') + 
+                                                    $"{car.Model}".PadRight(15, ' ') + 
+                                                    $"{car.RegistrationNumber}");
                             }
 
+                            Console.WriteLine();
                             Console.WriteLine("<Press any key to continue>");
                             Console.ReadKey(true);
 
