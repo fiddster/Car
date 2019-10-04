@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Car
+﻿namespace Car
 {
     class Car
     {
@@ -11,6 +7,12 @@ namespace Car
         private ushort velocity;
         private bool driveModeOn;
 
+
+        public Car(string brand, string model)
+        {
+            Brand = brand;
+            this.model = model;
+        }
         public Car(string brand, string model, string registrationNumber)
         {
             Brand = brand;

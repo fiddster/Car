@@ -6,6 +6,9 @@ namespace Car
     {
         static void Main(string [] args)
         {
+            Car[] carList = new Car[10];
+            int carListCounter = 0;
+
             bool programShouldRun = true;
             
             while (programShouldRun)
@@ -21,20 +24,35 @@ namespace Car
                 switch (keyPress.Key)
                 {
                     case ConsoleKey.D1:
-                    { 
-                    
-                    }
+                    {
+                            Console.WriteLine("Add car");
+                            Console.WriteLine();
+                            Console.WriteLine("Brand: ");
+                            Console.WriteLine("Model: ");
+                            //Console.WriteLine("Registration number: ");
+
+                            Console.SetCursorPosition("Brand: ".Length + 2, 2);
+                            string brand = Console.ReadLine();
+
+                            Console.SetCursorPosition("Model: ".Length + 2, 3);
+                            string model = Console.ReadLine();
+
+                            carList[carListCounter++] = new Car(brand, model);
+                        }
                     break;
+
                     case ConsoleKey.D2:
                     {
 
                     }
                     break;
+
                     case ConsoleKey.D3:
                     {
 
                     }
                     break;
+
                     case ConsoleKey.D4:
                     {
                         programShouldRun = false;
