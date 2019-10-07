@@ -1,15 +1,16 @@
 ﻿namespace Car
 {
-    class Car
+    abstract class Car
     {
         //auto-implemented property
         //automatically creates private backing field
         public string Brand { get; }
         public string Model { get; }
         private string registrationNumber;
-        private ushort velocity;
+        public double Velocity { get; protected set; }
         private bool driveModeOn;
 
+        private int averageAcceleration = 4; // m/s^2
 
         public Car(string brand, string model)
         {
@@ -42,19 +43,19 @@
             RegistrationNumber = value;
         }
 
-        public ushort Velocity { get; }
-
         public void Accelerate()
         {
-            velocity += 5;
+            Velocity += 5;
         }
+
+        public abstract void Accelerate(int seconds);
 
         public void Break()
         {
-            if (velocity >= 10)
-                velocity -= 10;
+            if (Velocity >= 10)
+                Velocity -= 10;
             else
-                velocity = 0;
+                Velocity = 0;
         }
 
     }

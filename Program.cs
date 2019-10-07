@@ -27,22 +27,28 @@ namespace Car
                 {
                     case ConsoleKey.D1:
                     {
-                            Console.WriteLine("Add car");
-                            Console.WriteLine();
-                            Console.WriteLine("Brand:".PadLeft("Registration number:".Length, ' '));
-                            Console.WriteLine("Model:".PadLeft("Registration number:".Length, ' '));
                             Console.WriteLine("Registration number:");
-
-                            Console.SetCursorPosition("Registration number:".Length + 2, 2);
-                            string brand = Console.ReadLine();
-
-                            Console.SetCursorPosition("Registration number:".Length + 2, 3);
-                            string model = Console.ReadLine();
-
-                            Console.SetCursorPosition("Registration number:".Length + 2, 4);
+                            Console.SetCursorPosition("Registration number:".Length + 2, 0);
                             string registrationNumber = Console.ReadLine();
 
-                            carList[carListCounter++] = new Car(brand, model, registrationNumber);
+                            Console.WriteLine("Choose car");
+                            Console.WriteLine("1. Tesla Model 3");
+                            Console.WriteLine("2. Volvo 240");
+
+                            ConsoleKeyInfo choise = Console.ReadKey(true);
+
+                            Car newCar = null;
+
+                            if (choise.Key == ConsoleKey.D1)
+                            {
+                                newCar = new TeslaModel3(registrationNumber);
+                            }
+                            else if(choise.Key == ConsoleKey.D2)
+                            {
+                                newCar = new Volvo240(registrationNumber);
+                            }
+
+                            carList[carListCounter++] = newCar;
                         }
                     break;
 
@@ -97,7 +103,27 @@ namespace Car
 
                     case ConsoleKey.D4:
                     {
+                            Console.WriteLine("Length of simulation (Seconds): ");
 
+                            Console.SetCursorPosition("Length of simulation (Seconds): ".Length, 0);
+
+                            var seconds = int.Parse(Console.ReadLine());
+                            Console.Clear();
+
+                            Console.WriteLine("Brand".PadRight(15, ' ') +"Model".PadRight(15, ' ')+ "Velocity km/h");
+                            Console.WriteLine("".PadRight(60, '-'));
+
+                            foreach (Car car in carList)
+                            {
+                                if (car == null) continue;
+                                car.Accelerate(seconds);
+
+                                Console.WriteLine(car.Brand.PadRight(15, ' ') + car.Model.PadRight(15, ' ') + car.Velocity);
+                            }
+
+                            Console.WriteLine();
+                            Console.WriteLine("<Press any key to continue>");
+                            Console.ReadKey(true);
                     }
                     break;
 
